@@ -40,32 +40,54 @@ public class Main {
                 break;
             case "3": buscarNumero();
                 break;
-            case "4":
+            case "4": borrarNombre();
                 break;
-            case "5":
+            case "5":buscarNombre();
                 break;
-            case "6":
+            case "6": JOptionPane.showMessageDialog(null, "Saliendo...");
                 break;
 
         }
     }
 
     public static void añadirNumero() throws Exception{
-        Integer numero= Integer.valueOf(JOptionPane.showInputDialog("Introduce el contacto de un alumno"));
+        int numero= Integer.parseInt(JOptionPane.showInputDialog("Introduce el contacto de un alumno"));
         String nombre= JOptionPane.showInputDialog("Introduce el nombre del alumno");
 
         contactos.put(numero,nombre);
+
+        JOptionPane.showMessageDialog(null, "contacto añadido");
+
     }
 
     public static void borrarNumero() throws Exception{
-        Integer numero= Integer.valueOf(JOptionPane.showInputDialog("Introduce el contacto que  quieres eliminar"));
-        String nombre= JOptionPane.showInputDialog("Introduce el nombre del alumno");
+        int numero= Integer.parseInt(JOptionPane.showInputDialog("Introduce el contacto que  quieres eliminar"));
 
-        contactos.remove(numero,nombre);
+        JOptionPane.showMessageDialog(null, contactos.remove(numero)+"fue eliminado");
+
+
     }
 
     public static void buscarNumero() throws Exception{
-
+        int numero = Integer.parseInt(JOptionPane.showInputDialog(null, "Teclea el numero que quieres buscar"));
+        JOptionPane.showMessageDialog(null,contactos.get(numero));
     }
+
+    public static void borrarNombre() throws Exception{
+        String nombre= JOptionPane.showInputDialog("Introduce el nombre que quieres borrar");
+
+        JOptionPane.showMessageDialog(null, contactos.get(nombre)+"fue eliminado");
+    }
+
+    public static void buscarNombre() throws Exception{
+        String nombre = JOptionPane.showInputDialog(null, "Teclea el nombre que quieres buscar");
+        for (int clave : contactos.keySet()) {
+            if (contactos.get(clave).equals(nombre)) {
+                JOptionPane.showMessageDialog(null,"Contacto:\n " + nombre + " - " + clave);
+            }
+        }
+    }
+
+
 
 }
