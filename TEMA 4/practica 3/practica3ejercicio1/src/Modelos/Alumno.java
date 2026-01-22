@@ -4,34 +4,24 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Alumno extends Persona {
-    private String DNI;
+    private String dni;
     private ArrayList<Libro> LibrosAlquilados;
 
 
-    public Alumno() {
-    }
-
-    public Alumno(String nombre, LocalDate fechanacimiento, String paisNacimiento) {
+    public Alumno(String nombre, LocalDate fechanacimiento, String paisNacimiento, String dni, ArrayList<Libro> librosAlquilados) {
         super(nombre, fechanacimiento, paisNacimiento);
-    }
-
-    public Alumno(String nombre, LocalDate fechanacimiento, String paisNacimiento, String DNI) {
-        super(nombre, fechanacimiento, paisNacimiento);
-        this.DNI = DNI;
-    }
-
-    public Alumno(String nombre, LocalDate fechanacimiento, String paisNacimiento, String DNI, ArrayList<Libro> librosAlquilados) {
-        super(nombre, fechanacimiento, paisNacimiento);
-        this.DNI = DNI;
+        this.dni = dni;
         LibrosAlquilados = librosAlquilados;
     }
 
-
-    public String getDNI() {
-        return DNI;
+    public Alumno(String nombre, LocalDate fechanacimiento, String paisNacimiento, String dni) {
+        super(nombre, fechanacimiento, paisNacimiento);
+        this.dni = dni;
     }
-    public void setDNI(String DNI) {
-        this.DNI = DNI;
+
+
+    public String getdni() {
+        return dni;
     }
 
     public ArrayList<Libro> getLibrosAlquilados() {
