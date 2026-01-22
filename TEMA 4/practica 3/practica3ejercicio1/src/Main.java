@@ -37,10 +37,10 @@ public class Main {
         libros.add(new Libro("El duque y yo", "359", "Match Stories", autor3));
 
         //5. generar alumnos
-        alumnos.add(new Alumno("Marta", LocalDate.of(2007, 7, 11), "España", "00000000A", 0));
-        alumnos.add(new Alumno("Pedro", LocalDate.of(2006, 9, 19), "Italia", "00000001B", 2));
-        alumnos.add(new Alumno("Juan", LocalDate.of(2002, 1, 3), "Argentina", "00000002N", 1));
-        alumnos.add(new Alumno("Lola", LocalDate.of(2005, 12, 23), "España", "00000004D", 0));
+        alumnos.add(new Alumno("Marta", LocalDate.of(2007, 7, 11), "España", "00000000A"));
+        alumnos.add(new Alumno("Pedro", LocalDate.of(2006, 9, 19), "Italia", "00000001B"));
+        alumnos.add(new Alumno("Juan", LocalDate.of(2002, 1, 3), "Argentina", "00000002N"));
+        alumnos.add(new Alumno("Lola", LocalDate.of(2005, 12, 23), "España", "00000004D"));
 
     }
 
@@ -87,8 +87,9 @@ public class Main {
                 JOptionPane.showMessageDialog(null, "El alumno " + alum.getNombre() + " no tiene libros disponibles para alquilar");
 
             }
-        }
 
+        }
+        mostrarMenu();
     }
 
     public static Alumno solicitarAlumno() {
@@ -105,7 +106,7 @@ public class Main {
                     throw new Exception("DNI incorrecto");
 
                 alum = alumnos.stream()
-                        .filter(a -> a.getdni().equalsIgnoreCase(dni))
+                        .filter(a -> a.getDni().equalsIgnoreCase(dni))
                         .findFirst()
                         .orElse(null);
                 if (alum == null)
@@ -153,6 +154,8 @@ public class Main {
         } else {
             JOptionPane.showMessageDialog(null, "El alumno " + alumno.getNombre() + " no tiene ese libro");
         }
+
+        mostrarMenu();
     }
 
     public static void verDatos() {
@@ -174,6 +177,8 @@ public class Main {
         }
         JOptionPane.showMessageDialog(null, datos.toString());
 
+
+        mostrarMenu();
 }
 }
 
