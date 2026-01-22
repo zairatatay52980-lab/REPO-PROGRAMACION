@@ -1,4 +1,4 @@
 package Modelos;
 
-public class Veterinario {
+public class Veterinario extends Persona {
 }
