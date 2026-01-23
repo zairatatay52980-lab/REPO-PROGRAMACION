@@ -9,6 +9,19 @@ public class Mascota {
     protected String sexo;
     protected double peso;
 
+    private Cliente propietario;
+    private Veterinario veterinario;
+
+
+    public Mascota(String raza, String nombre, LocalDate fechaNacimiento, String sexo, double peso, Cliente propietario, Veterinario veterinario) {
+        this.raza = raza;
+        this.nombre = nombre;
+        this.fechaNacimiento = fechaNacimiento;
+        this.sexo = sexo;
+        this.peso = peso;
+        this.propietario = propietario;
+        this.veterinario = veterinario;
+    }
 
     public String getRaza() {
         return raza;
@@ -45,15 +58,17 @@ public class Mascota {
         this.peso = peso;
     }
 
-
-    public Mascota() {
+    public Cliente getPropietario() {
+        return propietario;
+    }
+    public void setPropietario(Cliente propietario) {
+        this.propietario = propietario;
     }
 
-    public Mascota(String raza, String nombre, LocalDate fechaNacimiento, String sexo, double peso) {
-        this.raza = raza;
-        this.nombre = nombre;
-        this.fechaNacimiento = fechaNacimiento;
-        this.sexo = sexo;
-        this.peso = peso;
+    public Veterinario getVeterinario() {
+        return veterinario;
+    }
+    public void setVeterinario(Veterinario veterinario) {
+        this.veterinario = veterinario;
     }
 }
