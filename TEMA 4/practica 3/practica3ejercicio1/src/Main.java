@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
-    public static ArrayList<Autor> autores = new ArrayList<>();
     public static ArrayList<Libro> libros = new ArrayList<>();
     public static ArrayList<Alumno> alumnos = new ArrayList<>();
 
@@ -66,6 +65,8 @@ public class Main {
                     case 3:
                         verDatos();
                         break;
+                    case 0:
+                        JOptionPane.showMessageDialog(null, "Saliendo..");
                 }
 
             } while (opcion != 0) ;

@@ -37,19 +37,26 @@ public class Main {
         pedirDatosVeterinario();
 
     }
+    public static void mostrarMenu() throws Exception{}
+
+
 
     public static void pedirDatosMascotas() throws Exception {
-        listaMascotas.add(new Mascota(
-        validarSolicitarDatos("Nombre", "Teclea el NOMBRE de la mascota", "^[a-zA-Z]+$");
-        validarSolicitarDatos("Direccion", "Teclea la DIRECCION de la mascota", "^[a-zA-Z]+$");
 
-))
+        String raza = validarSolicitarDatos("Raza", "Teclea la RAZA de la mascota", "^[a-zA-Z\\s]+$");
+        String nombre = validarSolicitarDatos("Nombre", "Teclea el NOMBRE de la mascota", "^[a-zA-Z\\s]+$");
+        LocalDate fecha = LocalDate.parse(validarSolicitarDatos("Fecha", "Fecha Nacimiento de la mascota(Formato AAAA-MM-DD)", "^\\d{4}-\\d{2}-\\d{2}$"));
+        String sexo = validarSolicitarDatos("Sexo", "Teclea el SEXO (M/H) de la mascota", "^[a-zA-Z]+$");
+        double peso = Integer.parseInt(validarSolicitarDatos("Peso", "Teclea el PESO (solo números)de la mascota", "^[0-9]+$"));
 
+        listaMascotas.add(new Mascota(raza, nombre, fecha, sexo, peso, null, null));
+
+        JOptionPane.showMessageDialog(null, "Mascota añadida con éxito :)");
     }
 
-    public static void pedirDatosClientes(){
+    public static void pedirDatosClientes() throws Exception {
 
-
+        String nombre = validarSolicitarDatos("Nombre", "Teclea el nombre del cliente","^[a-zA-Z\\s]+$" );
     }
 
     public static void pedirDatosVeterinario(){
@@ -80,7 +87,7 @@ public class Main {
                 Pattern pat = Pattern.compile(expersionRegular);
                 Matcher mat = pat.matcher(var);
 
-                if(mat.matches()){
+                if(!mat.matches()){
                     throw new Exception(dato + " no tiene un formato valido");
 
                 }
@@ -96,17 +103,6 @@ public class Main {
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 

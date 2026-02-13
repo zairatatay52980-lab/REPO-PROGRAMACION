@@ -8,3 +8,4 @@ public class Gato extends Mascota {
         super(raza, nombre, fechaNacimiento, sexo, peso, propietario, veterinario);
     }
 }
+
