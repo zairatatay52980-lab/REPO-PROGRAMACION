@@ -1,27 +1,27 @@
 package Metodos;
 
-public class Cliente extends Persona {
+public class Cliente extends Persona{
 
-        private int telefono;
+    private String telefonoContacto;
 
-
-    public Cliente(int edad, String nombre, int telefono) {
-        super(edad, nombre);
-        this.telefono = telefono;
+    public Cliente(String nombre,int edad,String telefono)
+    {
+        // this.setNombre(nombre);
+        super(nombre,edad);
+        this.telefonoContacto =  telefono;
     }
 
-
-    public int getTelefono() {
-            return telefono;
-        }
-
-    public void setTelefono(int telefono) {
-            this.telefono = telefono;
-        }
-
-
-    public String mostrar() {
-        return super.mostrar()+ " " +  this.telefono;
+    public String getTelefonoContacto() {
+        return telefonoContacto;
     }
+
+    public void setTelefonoContacto(String telefonoContacto) {
+        this.telefonoContacto = telefonoContacto;
+    }
+
+    public String mostrar(){
+     return super.mostrar() + " " + this.telefonoContacto;
+    }
+
 }
 

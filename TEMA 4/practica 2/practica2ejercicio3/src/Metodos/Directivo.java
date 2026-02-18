@@ -1,15 +1,16 @@
 package Metodos;
-
+import java.util.ArrayList;
 import java.util.List;
 
 public class Directivo extends Empleado{
 
     private String categoria;
+    // Relación con Empleado
     private List<Empleado> subordinados;
 
-
-    public Directivo(int edad, String nombre, double sueldoBruto, String categoria) {
-        super(edad, nombre, sueldoBruto);
+    public Directivo(String nombre,int edad,double sueldo,String categoria)
+    {
+        super(nombre,edad,sueldo);
         this.categoria = categoria;
     }
 
@@ -25,15 +26,14 @@ public class Directivo extends Empleado{
         return subordinados;
     }
 
-    public void setSubordinados(List<Empleado> subordinados) {
+    public void setSubordinados(ArrayList<Empleado> subordinados) {
         this.subordinados = subordinados;
     }
 
 
     @Override
-    public String toString() {
-        return "Directivo{" +
-                "categoria='" + categoria + '\'' +
-                '}';
+    public String mostrar(){
+        return this.getNombre() + " " + this.getEdad() + " " + this.getSueldoBruto() + " " + this.getCategoria();
     }
 }
+

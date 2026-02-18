@@ -1,17 +1,16 @@
 package Metodos;
 
-public class Empleado extends Persona {
+public class Empleado extends Persona{
 
     private double sueldoBruto;
 
 
-    public Empleado(double sueldoBruto) {
-        this.sueldoBruto = sueldoBruto;
-    }
+    public Empleado(String nombre,int edad,double sueldo)
+    {
 
-    public Empleado(int edad, String nombre, double sueldoBruto) {
-        super(edad, nombre);
-        this.sueldoBruto = sueldoBruto;
+        super(nombre,edad);
+
+        this.sueldoBruto = sueldo;
     }
 
     public double getSueldoBruto() {
@@ -22,17 +21,15 @@ public class Empleado extends Persona {
         this.sueldoBruto = sueldoBruto;
     }
 
-
     @Override
-    public String mostrar() {
-        return this.getNombre() + " "  + this.getEdad() + " " + this.sueldoBruto;
+    public String mostrar(){
 
+        return this.getNombre() + " " + this.getEdad() + " " + this.getSueldoBruto();
     }
 
-
-    public double calcularSalario() {
+    public Double calcularSalarioNeto(){
         return sueldoBruto * 0.9;
-}
+    }
 
 }
 

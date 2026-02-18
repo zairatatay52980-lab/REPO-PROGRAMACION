@@ -1,19 +1,12 @@
 package Metodos;
-
 public class Persona {
-
     private String nombre;
     private int edad;
 
-
-    public Persona() {
-    }
-
-    public Persona(int edad, String nombre) {
-        this.edad = edad;
+    public Persona(String nombre, int edad) {
         this.nombre = nombre;
+        this.edad = edad;
     }
-
 
     public String getNombre() {
         return nombre;
@@ -33,9 +26,8 @@ public class Persona {
 
 
     public String mostrar(){
-
-        return this.nombre+" "+ this.edad;
+        return this.nombre + " " + this.edad;
     }
 
-
 }
+
