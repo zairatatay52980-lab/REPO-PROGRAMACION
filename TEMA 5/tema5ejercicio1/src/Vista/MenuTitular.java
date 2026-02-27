@@ -9,6 +9,10 @@ public class MenuTitular {
 
     private TitularController titularController;
 
+    public MenuTitular() {
+        this.titularController = new TitularController();
+    }
+
     public void mostrarMenu() {
 
         int opcion;
@@ -32,12 +36,17 @@ public class MenuTitular {
 
         try{
 
-            String nombre = EntradaDatos.validarTexto("Teclea el nombre del titular ", "Nombre", "^[A-Za-z]+$");
             String dni = EntradaDatos.validarTexto("Teclea el DNI del titular ", "DNI", "^[0-9]{8}[A-Za-z]$");
 
-            titularController.crearTitular(nombre, dni);
+            if(dni!=null){
+                String nombre = EntradaDatos.validarTexto("Teclea el nombre del titular ", "Nombre", "^[A-Za-z]+$");
 
-            JOptionPane.showMessageDialog(null, "Titular \n" + nombre + "\n con el DNI " + dni + "\n registrado correctamente.");
+                if(nombre!=null){
+                    titularController.crearTitular(nombre, dni);
+                    JOptionPane.showMessageDialog(null, "Titular " + nombre + " con el DNI " + dni + " registrado correctamente.");
+
+                }
+            }
 
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());

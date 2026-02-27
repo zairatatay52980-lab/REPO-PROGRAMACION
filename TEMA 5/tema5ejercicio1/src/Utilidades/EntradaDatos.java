@@ -9,34 +9,37 @@ public class EntradaDatos {
     public static String validarTexto(String mensaje, String dato, String expresionRegular) {
 
         boolean error;
-         String variable="";
+        String variable = "";
 
-         do {
-             try{
-                 error=false;
+        do {
+            try {
+                error = false;
 
-                 variable = JOptionPane.showInputDialog(mensaje);
+                variable = JOptionPane.showInputDialog(mensaje);
 
-                 if (variable.isEmpty()) {
-                     throw new Exception(dato + " no puede estar vacío.");
-                 }
+                if (variable == null) {
+                    return null;
+                }
 
-                 Pattern pattern = Pattern.compile(expresionRegular);
-                 Matcher matcher = pattern.matcher(variable);
+                if (variable.isEmpty()) {
+                    throw new Exception(dato + " no puede estar vacío.");
+                }
 
-                    if (!matcher.matches()) {
-                        throw new Exception("Formato de " + dato + " no válido.");
-                    }
+                Pattern pattern = Pattern.compile(expresionRegular);
+                Matcher matcher = pattern.matcher(variable);
 
-             }catch (Exception e){
-                 System.out.println("Error: " + e.getMessage());
-                    error=true;
-             }
+                if (!matcher.matches()) {
+                    throw new Exception("Formato de " + dato + " no válido.");
+                }
 
-             return variable;
+            } catch (Exception e) {
+                System.out.println("Error: " + e.getMessage());
+                error = true;
+            }
 
-         }while(error);
+        } while (error);
 
+        return variable;
 
     }
 

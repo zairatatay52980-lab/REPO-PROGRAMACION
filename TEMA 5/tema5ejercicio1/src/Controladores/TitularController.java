@@ -9,6 +9,7 @@ public class TitularController {
 
 
     public  TitularController() {
+        this.titularDAO = new TitularDAO();
     }
 
     public void crearTitular(String nombre, String dni) {
