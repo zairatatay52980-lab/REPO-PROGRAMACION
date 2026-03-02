@@ -15,6 +15,32 @@ import java.util.List;
 public class TitularDAO {
 
 
+    public static Titular buscarPorId(int id) {
+        String sql = "select * from titular where id = ?";
+
+        try {
+            Connection connection = BaseDatos.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, id);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                return new Titular(
+                        resultSet.getString("nombre"),
+                        resultSet.getInt("id"),
+                        resultSet.getString("dni")
+                );
+            }
+
+        } catch (SQLException e) {
+
+            JOptionPane.showMessageDialog(null, e);
+
+        }
+        return null;
+    }
+
     public static Titular buscarPorDni(String dni) {
         String sql = "select * from titular where dni = ?";
 

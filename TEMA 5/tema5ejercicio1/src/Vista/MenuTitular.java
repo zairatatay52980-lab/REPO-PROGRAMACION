@@ -26,9 +26,9 @@ public class MenuTitular {
                     + "\n 3.Borrar Titular"
                     + "\n 4.Listar Titulares"
                     + "\n 5.Listar titular por nombre"
-                    + "\n 6.Buscar por ID"));
-
-
+                    + "\n 6.Buscar por ID"
+                    + "\n 7.Buscar por DNI"
+                    + "\n 0.Salir\n"));
 
 
             switch (opcion) {
@@ -38,11 +38,14 @@ public class MenuTitular {
                 case 4 -> listarTitulares();
                 case 5 -> listarPorNombre();
                 case 6 -> buscarPorId();
+                case 7 -> buscarPorDnii();
+                case 0 -> JOptionPane.showMessageDialog(null, "Saliendo del programa...");
                 default -> JOptionPane.showMessageDialog(null, "Opción inválida.");
             }
         } while (opcion != 0);
 
     }
+
 
     public void listarPorNombre(){
         JOptionPane.showMessageDialog(null, "--- LISTAR TITULARES POR NOMBRE ---");
@@ -96,9 +99,6 @@ public class MenuTitular {
                 JOptionPane.showMessageDialog(null, "Titular con el DNI " + dni + " borrado correctamente.");
             }
 
-
-
-
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
         }
@@ -108,7 +108,6 @@ public class MenuTitular {
 
     public void modificarTitular() {
         JOptionPane.showMessageDialog(null, "-- MODIFICAR TITULAR --");
-        //se crea objeto titular y se busca por dni para saber si existe
 
         Titular titular = buscarPorDni();
 
@@ -124,8 +123,44 @@ public class MenuTitular {
 
     }
 
-    public Titular buscarPorDni() {
+    public Titular buscarPorId(){
+        JOptionPane.showMessageDialog(null, "-- BUSCAR TITULAR POR ID --");
+
+        int id = Integer.parseInt(EntradaDatos.validarTexto("Teclea el ID del titular", "ID", "^[0-9]+$"));
+
+        if(id != -1){
+            Titular titular = titularController.buscarPorId(id);
+
+            if (titular != null) {
+                JOptionPane.showMessageDialog(null,"Titular encontrado: " + titular);
+            } else {
+                JOptionPane.showMessageDialog(null, "No se encontró ningún titular con el ID proporcionado.");
+            }
+            return titular;
+        }
+
+
+        return null;
+    }
+
+    public Titular buscarPorDnii() {
+
         JOptionPane.showMessageDialog(null, "-- BUSCAR TITULAR POR DNI --");
+
+        String dni = EntradaDatos.validarTexto("Teclea el DNI del titular ", "DNI", "^[0-9]{8}[A-Za-z]$");
+
+        if(dni != null){
+            Titular titular = titularController.buscarPorDni(dni);
+            return titular;
+        }
+
+        return null;
+    }
+
+
+    public Titular buscarPorDni() {
+
+
 
         String dni = EntradaDatos.validarTexto("Teclea el DNI del titular ", "DNI", "^[0-9]{8}[A-Za-z]$");
 

@@ -15,6 +15,10 @@ public class TitularController {
         this.titularDAO = new TitularDAO();
     }
 
+    public Titular buscarPorId(int id){
+        return TitularDAO.buscarPorId(id);
+    }
+
     public Titular buscarPorDni(String dni) {
         return TitularDAO.buscarPorDni(dni);
     }
