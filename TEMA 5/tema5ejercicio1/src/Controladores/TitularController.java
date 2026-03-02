@@ -3,6 +3,8 @@ package Controladores;
 import DAO.TitularDAO;
 import Modelo.Titular;
 
+import java.sql.SQLException;
+
 public class TitularController {
 
     private TitularDAO titularDAO;
@@ -10,6 +12,18 @@ public class TitularController {
 
     public  TitularController() {
         this.titularDAO = new TitularDAO();
+    }
+
+    public Titular buscarPorDni(String dni) {
+        return TitularDAO.buscarPorDni(dni);
+    }
+
+
+    public void modificarTitular(Titular titular, String nuevoNombre) {
+
+        titular.setNombre(nuevoNombre);
+        titularDAO.modificarTitular(titular);
+
     }
 
     public void crearTitular(String nombre, String dni) {

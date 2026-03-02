@@ -6,9 +6,54 @@ import Utilidades.BaseDatos;
 import javax.swing.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class TitularDAO {
+
+
+    public static Titular buscarPorDni(String dni) {
+        String sql = "select * from titular where dni = ?";
+
+        try{
+            Connection connection = BaseDatos.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setString(1, dni);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()){
+                return new Titular(
+                        resultSet.getString("nombre"),
+                        resultSet.getInt("id"),
+                        resultSet.getString("dni")
+                );
+            }
+
+            BaseDatos.cerrarConexion(connection);
+
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return null;
+    }
+
+
+    public void modificarTitular(Titular titular) {
+        String sql = "update titular set nombre = ? where dni = ?";
+
+        try{
+            Connection connection = BaseDatos.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setString(2, titular.getDni());
+            preparedStatement.setString(1, titular.getNombre());
+            preparedStatement.executeUpdate();
+
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 
     public void insertarTitular(Titular titular) {

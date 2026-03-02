@@ -4,15 +4,15 @@ public class Titular{
 
 
     private String nombre;
-    private String apellido;
+    private int id;
     private String dni;
 
     public Titular() {
     }
 
-    public Titular(String nombre, String apellido, String dni) {
+    public Titular(String nombre, int id, String dni) {
         this.nombre = nombre;
-        this.apellido = apellido;
+        this.id = id;
         this.dni = dni;
     }
 
@@ -24,12 +24,12 @@ public class Titular{
         this.nombre = nombre;
     }
 
-    public String getApellido() {
-        return apellido;
+    public int getId() {
+        return id;
     }
 
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getDni() {
