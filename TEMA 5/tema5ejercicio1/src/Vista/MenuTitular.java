@@ -5,6 +5,7 @@ import Modelo.Titular;
 import Utilidades.EntradaDatos;
 
 import javax.swing.*;
+import java.util.List;
 
 public class MenuTitular {
 
@@ -22,20 +23,43 @@ public class MenuTitular {
             opcion = Integer.parseInt(JOptionPane.showInputDialog(null, "--- M E N U   P R I N C I P A L ---\n"
                     + "\n 1.Registrar Titular"
                     + "\n 2.Modificar Titular"
-                    + "\n 3.Borrar Titular"));
+                    + "\n 3.Borrar Titular"
+                    + "\n 4.Listar Titulares"));
+
+
 
 
             switch (opcion) {
                 case 1 -> registrarTitular();
                 case 2 -> modificarTitular();
-                case 3 -> BorrarTitular();
+                case 3 -> borrarTitular();
+                case 4 -> listarTitulares();
                 default -> JOptionPane.showMessageDialog(null, "Opción inválida.");
             }
         } while (opcion != 0);
 
     }
 
-    public void BorrarTitular() {
+    private void listarTitulares() {
+        JOptionPane.showMessageDialog(null, "--- LISTAR TITULARES ---");
+
+        List<Titular> listaTitulares = titularController.listarTitulares();
+
+        if (listaTitulares.isEmpty())
+        {
+            JOptionPane.showMessageDialog(null, "No hay titulares registrados.");
+        } else
+        {
+            StringBuilder mensaje = new StringBuilder();
+            for (Titular t : listaTitulares) {
+                mensaje.append(t.toString()).append("\n");
+            }
+            JOptionPane.showMessageDialog(null, mensaje.toString());
+        }
+
+    }
+
+    public void borrarTitular() {
         JOptionPane.showMessageDialog(null, "-- BORRAR TITULAR --");
 
         try{

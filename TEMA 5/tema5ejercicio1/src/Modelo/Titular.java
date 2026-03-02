@@ -39,4 +39,9 @@ public class Titular{
     public void setDni(String dni) {
         this.dni = dni;
     }
+
+    @Override
+    public String toString() {
+        return "ID: " + id + " | Nombre: " + nombre + " | DNI: " + dni;
+    }
 }

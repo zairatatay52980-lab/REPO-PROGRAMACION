@@ -4,6 +4,7 @@ import DAO.TitularDAO;
 import Modelo.Titular;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class TitularController {
 
@@ -41,6 +42,11 @@ public class TitularController {
         return titularDAO.borrarTitular(dni);
 
     }
+
+    public List<Titular> listarTitulares() {
+        return titularDAO.listarTitulares();
+    }
+
 
 
 }

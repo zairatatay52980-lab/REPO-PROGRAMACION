@@ -1,5 +1,6 @@
 package DAO;
 
+import Controladores.TitularController;
 import Modelo.Titular;
 import Utilidades.BaseDatos;
 
@@ -8,6 +9,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TitularDAO {
 
@@ -15,13 +18,13 @@ public class TitularDAO {
     public static Titular buscarPorDni(String dni) {
         String sql = "select * from titular where dni = ?";
 
-        try{
+        try {
             Connection connection = BaseDatos.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
             preparedStatement.setString(1, dni);
             ResultSet resultSet = preparedStatement.executeQuery();
-            if(resultSet.next()){
+            if (resultSet.next()) {
                 return new Titular(
                         resultSet.getString("nombre"),
                         resultSet.getInt("id"),
@@ -31,7 +34,7 @@ public class TitularDAO {
 
             BaseDatos.cerrarConexion(connection);
 
-        }catch(SQLException e){
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
         }
         return null;
@@ -41,7 +44,7 @@ public class TitularDAO {
     public void modificarTitular(Titular titular) {
         String sql = "update titular set nombre = ? where dni = ?";
 
-        try{
+        try {
             Connection connection = BaseDatos.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
@@ -61,10 +64,9 @@ public class TitularDAO {
 
         String sql = "insert into titular (nombre, dni) values (?, ?)";
 
-        try{
+        try {
             Connection connection = BaseDatos.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
 
             preparedStatement.setString(1, titular.getNombre());
@@ -75,8 +77,8 @@ public class TitularDAO {
 
         } catch (SQLException e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(null,"Mensaje de error: " + e.getMessage());
-            JOptionPane.showMessageDialog(null,"Estado SQL: " + e.getSQLState());
+            JOptionPane.showMessageDialog(null, "Mensaje de error: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Estado SQL: " + e.getSQLState());
 
         }
 
@@ -98,14 +100,41 @@ public class TitularDAO {
         } catch (SQLException e) {
             e.printStackTrace();
 
-        JOptionPane.showMessageDialog(null, "Mensaje de error: " + e.getMessage());
-        JOptionPane.showMessageDialog(null, "Estado SQL: " + e.getSQLState());
+            JOptionPane.showMessageDialog(null, "Mensaje de error: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Estado SQL: " + e.getSQLState());
 
         }
 
         return 0;
     }
 
+
+    public List<Titular> listarTitulares() {
+
+        List<Titular> lista = new ArrayList<>();
+        String sql = "select * from titular";
+
+        try (Connection connection = BaseDatos.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery()) {
+
+
+            while(resultSet.next()) {
+                lista.add(new Titular(
+                        resultSet.getString("nombre"),
+                        resultSet.getInt("id"),
+                        resultSet.getString("dni")
+                ));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Mensaje de error: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Estado SQL: " + e.getSQLState());
+        }
+
+        return lista;
     }
+}
 
 
