@@ -36,7 +36,11 @@ public class TitularController {
 
     }
 
+    public int borrarTitular(String dni) throws Exception {
 
+        return titularDAO.borrarTitular(dni);
+
+    }
 
 
 }

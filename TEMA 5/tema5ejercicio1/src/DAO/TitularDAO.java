@@ -49,6 +49,7 @@ public class TitularDAO {
             preparedStatement.setString(1, titular.getNombre());
             preparedStatement.executeUpdate();
 
+            JOptionPane.showMessageDialog(null, "(DAO) Titular modificado correctamente");
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -81,4 +82,30 @@ public class TitularDAO {
 
     }
 
-}
+    public int borrarTitular(String dni) {
+        String sql = "delete from titular where dni= ?";
+
+        try {
+            Connection connection = BaseDatos.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setString(1, dni);
+            int n = preparedStatement.executeUpdate();
+
+            JOptionPane.showMessageDialog(null, "(DAO) Titular borrado correctamente");
+            return n;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        JOptionPane.showMessageDialog(null, "Mensaje de error: " + e.getMessage());
+        JOptionPane.showMessageDialog(null, "Estado SQL: " + e.getSQLState());
+
+        }
+
+        return 0;
+    }
+
+    }
+
+

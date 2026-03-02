@@ -21,15 +21,39 @@ public class MenuTitular {
         do {
             opcion = Integer.parseInt(JOptionPane.showInputDialog(null, "--- M E N U   P R I N C I P A L ---\n"
                     + "\n 1.Registrar Titular"
-                    + "\n 2.Modificar Titular"));
+                    + "\n 2.Modificar Titular"
+                    + "\n 3.Borrar Titular"));
 
 
             switch (opcion) {
                 case 1 -> registrarTitular();
                 case 2 -> modificarTitular();
+                case 3 -> BorrarTitular();
                 default -> JOptionPane.showMessageDialog(null, "Opción inválida.");
             }
         } while (opcion != 0);
+
+    }
+
+    public void BorrarTitular() {
+        JOptionPane.showMessageDialog(null, "-- BORRAR TITULAR --");
+
+        try{
+            String dni = EntradaDatos.validarTexto("Teclea el DNI del titular a borrar ", "DNI", "^[0-9]{8}[A-Za-z]$");
+
+            if(dni != null){
+
+                titularController.borrarTitular(dni);
+                JOptionPane.showMessageDialog(null, "Titular con el DNI " + dni + " borrado correctamente.");
+            }
+
+
+
+
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
+        }
+
 
     }
 
