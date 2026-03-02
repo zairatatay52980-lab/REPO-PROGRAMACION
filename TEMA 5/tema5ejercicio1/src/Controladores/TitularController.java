@@ -48,5 +48,17 @@ public class TitularController {
     }
 
 
+    public StringBuilder buscarPorNombre(String nombre) {
+        List<Titular> listaTitular= titularDAO.listarPorNombre(nombre);
+        StringBuilder stringBuilder = new StringBuilder();
 
+        for (Titular titular : listaTitular) {
+
+            if (titular.getNombre().equalsIgnoreCase(nombre)) {
+                stringBuilder.append(titular.toString()).append("\n");
+
+            }
+        }
+        return stringBuilder;
+    }
 }

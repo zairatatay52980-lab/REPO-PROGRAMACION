@@ -115,11 +115,11 @@ public class TitularDAO {
         String sql = "select * from titular";
 
         try (Connection connection = BaseDatos.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            ResultSet resultSet = preparedStatement.executeQuery()) {
+             PreparedStatement preparedStatement = connection.prepareStatement(sql);
+             ResultSet resultSet = preparedStatement.executeQuery()) {
 
 
-            while(resultSet.next()) {
+            while (resultSet.next()) {
                 lista.add(new Titular(
                         resultSet.getString("nombre"),
                         resultSet.getInt("id"),
@@ -135,6 +135,32 @@ public class TitularDAO {
 
         return lista;
     }
+
+    public List<Titular> listarPorNombre(String nombre) {
+
+        List<Titular> lista = new ArrayList<>();
+        String sql = "select * from titular where nombre LIKE ?";
+
+        try (Connection connection = BaseDatos.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            preparedStatement.setString(1, "%" + nombre + "%");
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    lista.add(new Titular(
+                            resultSet.getString("nombre"),
+                            resultSet.getInt("id"),
+                            resultSet.getString("dni")
+                    ));
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Mensaje de error: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Estado SQL: " + e.getSQLState());
+        }
+
+        return lista;
+    }
 }
-
-

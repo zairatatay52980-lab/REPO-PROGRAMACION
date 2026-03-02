@@ -24,7 +24,9 @@ public class MenuTitular {
                     + "\n 1.Registrar Titular"
                     + "\n 2.Modificar Titular"
                     + "\n 3.Borrar Titular"
-                    + "\n 4.Listar Titulares"));
+                    + "\n 4.Listar Titulares"
+                    + "\n 5.Listar titular por nombre"
+                    + "\n 6.Buscar por ID"));
 
 
 
@@ -34,9 +36,32 @@ public class MenuTitular {
                 case 2 -> modificarTitular();
                 case 3 -> borrarTitular();
                 case 4 -> listarTitulares();
+                case 5 -> listarPorNombre();
+                case 6 -> buscarPorId();
                 default -> JOptionPane.showMessageDialog(null, "Opción inválida.");
             }
         } while (opcion != 0);
+
+    }
+
+    public void listarPorNombre(){
+        JOptionPane.showMessageDialog(null, "--- LISTAR TITULARES POR NOMBRE ---");
+
+        String nombre = EntradaDatos.validarTexto("Teclea el nombre del titular ", "Nombre", "^[A-Za-z]+$");
+        if (nombre == null) {
+            return; // el usuario canceló
+        }
+
+        StringBuilder stringBuilder = titularController.buscarPorNombre(nombre);
+
+        if (stringBuilder.length() == 0)
+        {
+            JOptionPane.showMessageDialog(null, "No hay titulares registrados con ese nombre.");
+        } else
+        {
+            JOptionPane.showMessageDialog(null, stringBuilder.toString());
+        }
+
 
     }
 
