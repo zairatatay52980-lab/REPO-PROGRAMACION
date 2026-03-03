@@ -15,12 +15,12 @@ public class MenuTitular {
         this.titularController = new TitularController();
     }
 
-    public void mostrarMenu() {
+    public void mostrarMenuTitular() {
 
         int opcion;
 
         do {
-            opcion = Integer.parseInt(JOptionPane.showInputDialog(null, "--- M E N U   P R I N C I P A L ---\n"
+            opcion = Integer.parseInt(JOptionPane.showInputDialog(null, "--- M E N U   T I T U L A R ---\n"
                     + "\n 1.Registrar Titular"
                     + "\n 2.Modificar Titular"
                     + "\n 3.Borrar Titular"
@@ -28,7 +28,8 @@ public class MenuTitular {
                     + "\n 5.Listar titular por nombre"
                     + "\n 6.Buscar por ID"
                     + "\n 7.Buscar por DNI"
-                    + "\n 0.Salir\n"));
+                    + "\n"
+                    + "\n 0.VOLVER AL MENU PRINCIPAL\n"));
 
 
             switch (opcion) {
@@ -39,7 +40,7 @@ public class MenuTitular {
                 case 5 -> listarPorNombre();
                 case 6 -> buscarPorId();
                 case 7 -> buscarPorDnii();
-                case 0 -> JOptionPane.showMessageDialog(null, "Saliendo del programa...");
+                case 0 -> JOptionPane.showMessageDialog(null, "Volviendo al menú principal...");
                 default -> JOptionPane.showMessageDialog(null, "Opción inválida.");
             }
         } while (opcion != 0);

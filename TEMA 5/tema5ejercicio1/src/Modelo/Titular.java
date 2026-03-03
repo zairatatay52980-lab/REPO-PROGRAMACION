@@ -1,8 +1,6 @@
 package Modelo;
 
 public class Titular{
-
-
     private String nombre;
     private int id;
     private String dni;
@@ -42,6 +40,6 @@ public class Titular{
 
     @Override
     public String toString() {
-        return "ID: " + id + " | Nombre: " + nombre + " | DNI: " + dni;
+        return "T I T U L A R "+ "\n ID: " + id + " | Nombre: " + nombre + " | DNI: " + dni;
     }
 }
